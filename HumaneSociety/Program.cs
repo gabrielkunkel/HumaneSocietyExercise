@@ -1,10 +1,10 @@
 ﻿namespace HumaneSociety
 {
-  class Program
-  {
-    static void Main(string[] args)
+    class Program
     {
-      PointOfEntry.Run();
+        static void Main(string[] args)
+        {
+            PointOfEntry.Run();
+        }
     }
-  }
 }
