@@ -309,13 +309,14 @@ namespace HumaneSociety
             Adoption adoption = new Adoption();
             adoption.AnimalId = animal.AnimalId;
             adoption.ClientId = client.ClientId;
+            adoption.ApprovalStatus = "Pending";
             db.Adoptions.InsertOnSubmit(adoption);
             db.SubmitChanges();
         }
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
-            throw new NotImplementedException();
+            return db.Adoptions.Where(adoption => adoption.ApprovalStatus == "Pending");
         }
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
