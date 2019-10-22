@@ -11,6 +11,13 @@ namespace HumaneSociety
         static void Main(string[] args)
         {
             PointOfEntry.Run();
+            //List<Client> clients = Query.GetClients();
+            //foreach(Client client in clients)
+            //{
+            //    Console.WriteLine(client.FirstName);
+            //}
+
+
         }
     }
 }
