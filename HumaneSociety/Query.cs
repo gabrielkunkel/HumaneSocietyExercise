@@ -201,7 +201,7 @@ namespace HumaneSociety
         switch (item.Key)
         {
           case 1:
-            animalFromDb.CategoryId = item.Value;
+            animalFromDb.CategoryId = GetCategoryId(item.Value);
             break;
           default:
             break;
@@ -228,7 +228,7 @@ namespace HumaneSociety
       // TODO: Misc Animal Things
       internal static int GetCategoryId(string categoryName)
       {
-        throw new NotImplementedException();
+      return db.Categories.Where(category => category.Name == categoryName).Select(category => category.CategoryId).FirstOrDefault();
       }
 
       internal static Room GetRoom(int animalId)
