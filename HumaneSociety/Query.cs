@@ -200,19 +200,35 @@ namespace HumaneSociety
       {
         switch (item.Key)
         {
-          case 1:
-            animalFromDb.CategoryId = GetCategoryId(item.Value);
-            break;
-          default:
-            break;
+      
+            case 1:
+                animalFromDb.CategoryId = GetCategoryId(item.Value);
+                break;
+            case 2:
+                animalFromDb.Name = item.Value;
+                break;
+            case 3:
+                animalFromDb.Age = Int32.Parse(item.Value);
+                break;             
+            case 4:
+                animalFromDb.Demeanor = item.Value;
+                break;
+            case 5:
+                animalFromDb.KidFriendly = bool.Parse(item.Value);
+                break;
+            case 6:
+                animalFromDb.PetFriendly = bool.Parse(item.Value);
+                break;
+            case 7:
+                animalFromDb.Weight = Int32.Parse(item.Value);
+                break;
+            case 8:
+                animalFromDb.AnimalId = Int32.Parse(item.Value);
+                break;
         }
       }
-
-
         db.SubmitChanges();
-
-
-      }
+    }
 
       internal static void RemoveAnimal(Animal animal)
       {
