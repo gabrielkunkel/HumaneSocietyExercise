@@ -9,7 +9,7 @@ namespace HumaneSociety
         {
             UserInterface.DisplayUserOptions("What is your password?");
             string password = UserInterface.GetUserInput();
-            if (password.ToLower() != "poiuyt")
+            if (password.ToLower() != "adminpassword")
             {
                 UserInterface.DisplayUserOptions("Incorrect password please try again or type exit");
             }
@@ -32,26 +32,31 @@ namespace HumaneSociety
             if (input == "1" || input.ToLower() == "create")
             {
                 AddEmployee();
+                Console.ReadLine();
                 RunUserMenus();
             }
             else if (input == "2" || input.ToLower() == "delete")
             {
                 RemoveEmployee();
+                Console.ReadLine();
                 RunUserMenus();
             }
             else if (input == "3" || input.ToLower() == "read")
             {
                 ReadEmployee();
+                Console.ReadLine();
                 RunUserMenus();
             }
             else if (input == "4" || input.ToLower() == "update")
             {
                 UpdateEmployee();
+                Console.ReadLine();
                 RunUserMenus();
             }
             else
             {
                 UserInterface.DisplayUserOptions("Input not recognized please try again or type exit");
+                Console.ReadLine();
                 RunUserMenus();
             }
         }

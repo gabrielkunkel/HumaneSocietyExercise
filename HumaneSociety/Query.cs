@@ -190,7 +190,7 @@ namespace HumaneSociety
             }
 
 
-            throw new NotImplementedException();
+         
         }
 
         // TODO: Animal CRUD Operations
