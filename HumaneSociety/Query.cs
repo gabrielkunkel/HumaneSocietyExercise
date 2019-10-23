@@ -337,24 +337,21 @@ namespace HumaneSociety
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
             var relevantShots = db.AnimalShots.Where(shot => shot.AnimalId == animal.AnimalId);
-
-            return relevantShots;
-               //from animalShots in relevantShots
-               //join shots in db.Shots on animalShots.ShotId equals shots.ShotId;
-               
-                  
-
-
-
-
+            return relevantShots;           
         }
 
         internal static void UpdateShot(string shotName, Animal animal)
         {
-           // Get id from string from shots
-           // add shot Id to animal shots?
+            AnimalShot newAnimalShot = new AnimalShot();
+            
+            var newShotID = db.Shots.Where(shot => shot.Name == shotName).Select(shotx => shotx.ShotId).SingleOrDefault();
+           
+            newAnimalShot.AnimalId = animal.AnimalId;
+            newAnimalShot.ShotId = newShotID;
+            newAnimalShot.DateReceived = DateTime.Now;
 
-           // db.SubmitChnges()
+            db.AnimalShots.InsertOnSubmit(newAnimalShot);
+            db.SubmitChanges();
         }
     }
 }
