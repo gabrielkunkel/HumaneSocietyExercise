@@ -126,6 +126,14 @@ namespace HumaneSociety
             Console.ReadLine();
         }
 
+        // Added by @MrGabrielKunkel
+        public static void DisplayEmployeeInfo(Employee employee)
+        {
+            List<string> info = new List<string>() { employee.FirstName, employee.LastName, employee.Email, Convert.ToString(employee.EmployeeNumber) };
+            DisplayUserOptions(info);
+            Console.ReadLine();
+        }
+
         public static void DisplayAnimalInfo(Animal animal)
         {
             Room animalRoom = Query.GetRoom(animal.AnimalId);
