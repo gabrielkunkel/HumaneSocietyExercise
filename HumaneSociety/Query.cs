@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace HumaneSociety
@@ -161,6 +162,45 @@ namespace HumaneSociety
 
         //// TODO Items: ////
 
+        // Bonus!
+        public static void AddAnimalsFromCSV()
+        {
+            var lines = File.ReadAllLines(@"animals.csv").Select(x => x.Split(','));
+
+            foreach (var item in lines)
+            {
+                Animal newAnimal = new Animal();
+
+                newAnimal.Name = item[0];
+                newAnimal.Weight = Int32.Parse(item[1]);
+                newAnimal.Age = Int32.Parse(item[2]);
+                newAnimal.Demeanor = item[3];
+                newAnimal.KidFriendly = Boolean.Parse(item[4]);
+                newAnimal.PetFriendly = Boolean.Parse(item[5]);
+                newAnimal.Gender = item[6];
+                newAnimal.AdoptionStatus = item[7];
+                newAnimal.CategoryId = Int32.Parse(item[8]);
+                newAnimal.DietPlanId = Int32.Parse(item[9]);
+                newAnimal.EmployeeId = Int32.Parse(item[10]);
+
+                // db.Animals.InsertOnSubmit(newAnimal);
+                // db.SubmitChanges();
+            }
+
+
+            //Considering each line contains same no. of elements
+            int lineLength = lines.First().Count();
+            var CSV = lines.Skip(1)
+                       .SelectMany(x => x)
+                       .Select((v, i) => new { Value = v, Index = i % lineLength })
+                       .Where(x => x.Index == 2 || x.Index == 3)
+                       .Select(x => x.Value);
+
+        }
+
+
+
+
         // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
@@ -194,6 +234,7 @@ namespace HumaneSociety
 
 
         }
+
 
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
