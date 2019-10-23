@@ -165,26 +165,51 @@ namespace HumaneSociety
         // Bonus!
         public static void AddAnimalsFromCSV()
         {
-            var lines = File.ReadAllLines(@"animals.csv").Select(x => x.Split(','));
+            var lines = File.ReadAllLines("animals.csv").Select(x => x.Split(',')
+                            .Select(y => y.Trim()).ToArray());
 
             foreach (var item in lines)
             {
                 Animal newAnimal = new Animal();
 
-                newAnimal.Name = item[0];
+                newAnimal.Name = Clean.CleanString(item[0]);
                 newAnimal.Weight = Int32.Parse(item[1]);
                 newAnimal.Age = Int32.Parse(item[2]);
-                newAnimal.Demeanor = item[3];
-                newAnimal.KidFriendly = Boolean.Parse(item[4]);
-                newAnimal.PetFriendly = Boolean.Parse(item[5]);
-                newAnimal.Gender = item[6];
-                newAnimal.AdoptionStatus = item[7];
-                newAnimal.CategoryId = Int32.Parse(item[8]);
-                newAnimal.DietPlanId = Int32.Parse(item[9]);
-                newAnimal.EmployeeId = Int32.Parse(item[10]);
+                newAnimal.Demeanor = Clean.CleanString(item[3]);
+                newAnimal.KidFriendly = Clean.StringToBool(item[4]);
+                newAnimal.PetFriendly = Clean.StringToBool(item[5]);
+                newAnimal.Gender = Clean.CleanString(item[6]);
+                newAnimal.AdoptionStatus = Clean.CleanString(item[7]);
+                
+                //newAnimal.CategoryId = Clean.CheckNullString(item[8]) ??  Int32.Parse(item[8]);
+                if (item[8] == "null")
+                {
 
-                // db.Animals.InsertOnSubmit(newAnimal);
-                // db.SubmitChanges();
+                }
+                else
+                {
+                    newAnimal.CategoryId = Int32.Parse(item[8]);
+                }
+                if (item[8] == "null")
+                {
+
+                }
+                else
+                {
+                    newAnimal.DietPlanId = Int32.Parse(item[8]);
+                }
+                if (item[8] == "null")
+                {
+
+                }
+                else
+                {
+                    newAnimal.EmployeeId = Int32.Parse(item[8]);
+                }
+                
+
+                db.Animals.InsertOnSubmit(newAnimal);
+                db.SubmitChanges();
             }
 
 
