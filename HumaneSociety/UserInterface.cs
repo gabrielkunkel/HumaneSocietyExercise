@@ -129,7 +129,8 @@ namespace HumaneSociety
         // Added by @MrGabrielKunkel
         public static void DisplayEmployeeInfo(Employee employee)
         {
-            List<string> info = new List<string>() { employee.FirstName, employee.LastName, employee.Email, Convert.ToString(employee.EmployeeNumber) };
+            Console.Clear();
+            List<string> info = new List<string>() { "FIRST: "+employee.FirstName,"LAST: "+employee.LastName,"EMAIL: "+employee.Email, "NUMBER: "+Convert.ToString(employee.EmployeeNumber) };
             DisplayUserOptions(info);
             Console.ReadLine();
         }

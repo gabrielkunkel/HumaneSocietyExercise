@@ -175,11 +175,11 @@ namespace HumaneSociety
                     db.SubmitChanges();
                     break;
                 case "read":
-                    var employeeToInfo = db.Employees.Where(emp => emp.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                    var employeeToInfo = db.Employees.Where(emp => emp.EmployeeNumber == employee.EmployeeNumber).FirstOrDefault();
                     UserInterface.DisplayEmployeeInfo(employeeToInfo);
                     break;
                 case "update":
-                    Employee employeeToUpdate = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).SingleOrDefault();
+                    Employee employeeToUpdate = db.Employees.Where(e => e.EmployeeNumber == employee.EmployeeNumber).SingleOrDefault();
                     employeeToUpdate.FirstName = employee.FirstName;
                     employeeToUpdate.LastName = employee.LastName;
                     employeeToUpdate.EmployeeNumber = employee.EmployeeNumber;
@@ -190,11 +190,7 @@ namespace HumaneSociety
                     break;
             }
 
-<<<<<<< HEAD
 
-         
-=======
->>>>>>> dbb008434c6c76ebff709645d2f532618e046059
         }
 
         // TODO: Animal CRUD Operations
