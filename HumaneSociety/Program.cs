@@ -5,8 +5,8 @@
         static void Main(string[] args)
         {
 
-            // PointOfEntry.Run();
-            Query.AddAnimalsFromCSV();
+             PointOfEntry.Run();
+            //Query.AddAnimalsFromCSV();
          
         }
     }

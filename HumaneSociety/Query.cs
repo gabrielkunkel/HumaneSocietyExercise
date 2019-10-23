@@ -181,7 +181,7 @@ namespace HumaneSociety
                 newAnimal.Gender = Clean.CleanString(item[6]);
                 newAnimal.AdoptionStatus = Clean.CleanString(item[7]);
                 
-                //newAnimal.CategoryId = Clean.CheckNullString(item[8]) ??  Int32.Parse(item[8]);
+                
                 if (item[8] == "null")
                 {
 
@@ -205,21 +205,12 @@ namespace HumaneSociety
                 else
                 {
                     newAnimal.EmployeeId = Int32.Parse(item[8]);
-                }
-                
+                }        
 
                 db.Animals.InsertOnSubmit(newAnimal);
                 db.SubmitChanges();
             }
 
-
-            //Considering each line contains same no. of elements
-            int lineLength = lines.First().Count();
-            var CSV = lines.Skip(1)
-                       .SelectMany(x => x)
-                       .Select((v, i) => new { Value = v, Index = i % lineLength })
-                       .Where(x => x.Index == 2 || x.Index == 3)
-                       .Select(x => x.Value);
 
         }
 
