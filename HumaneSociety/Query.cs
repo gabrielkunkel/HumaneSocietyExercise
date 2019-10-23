@@ -170,8 +170,10 @@ namespace HumaneSociety
                     db.Employees.InsertOnSubmit(employee);
                     db.SubmitChanges();
                     break;
-                case "remove":
-                    db.Employees.DeleteOnSubmit(employee);
+                case "delete":
+                    Employee employeeToDelete = db.Employees.Where(emp => emp.EmployeeNumber == employee.EmployeeNumber).FirstOrDefault();
+
+                    db.Employees.DeleteOnSubmit(employeeToDelete);
                     db.SubmitChanges();
                     break;
                 case "read":
