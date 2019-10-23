@@ -175,7 +175,8 @@ namespace HumaneSociety
                     db.SubmitChanges();
                     break;
                 case "read":
-                    db.Employees.Where(emp => emp.EmployeeId == employee.EmployeeId);
+                    var employeeToInfo = db.Employees.Where(emp => emp.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                    UserInterface.DisplayEmployeeInfo(employeeToInfo);
                     break;
                 case "update":
                     Employee employeeToUpdate = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).SingleOrDefault();
@@ -189,8 +190,6 @@ namespace HumaneSociety
                     break;
             }
 
-
-            throw new NotImplementedException();
         }
 
         // TODO: Animal CRUD Operations
